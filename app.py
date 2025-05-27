@@ -6,12 +6,11 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# Modeli yükle
 model = joblib.load("linear_regression_model.pkl")
 
 @app.route("/")
 def home():
-    return "Yapay zeka modeli yayında! POST /predict"
+    return "Yapay zeka API çalışıyor!"
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -25,5 +24,5 @@ def predict():
 
 if __name__ == '__main__':
     import os
-    port = int(os.environ.get("PORT", 5000))  # Railway PORT kullanır
+    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
